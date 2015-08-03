@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/ALMakeABudget/MoneyMasters#readme",
   "dependencies": {
+    "director": "^1.2.8",
     "react": "^0.13.3",
     "superagent": "^1.2.0"
   },
@@ -27,5 +28,10 @@
     "browserify": "^11.0.1",
     "browserify-incremental": "^3.0.1",
     "reactify": "^1.1.1"
+  },
+  "browserify": {
+    "transform": [
+      ["reactify"]
+    ]
   }
 }
