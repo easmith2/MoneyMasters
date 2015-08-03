@@ -6,6 +6,6 @@
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
   %body
-    .app
+    %div{{"data-js": "appMain"}}
       = yield
     = javascript_include_tag 'application', async: true
