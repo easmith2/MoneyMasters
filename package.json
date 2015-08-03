@@ -1,0 +1,30 @@
+{
+  "name": "moneymasters",
+  "version": "0.1.0",
+  "description": "mastering all the monies",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ALMakeABudget/MoneyMasters.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ALMakeABudget/MoneyMasters/issues"
+  },
+  "homepage": "https://github.com/ALMakeABudget/MoneyMasters#readme",
+  "dependencies": {
+    "react": "^0.13.3",
+    "superagent": "^1.2.0"
+  },
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "reactify": "^1.1.1"
+  }
+}
