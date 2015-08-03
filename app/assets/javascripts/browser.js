@@ -2,7 +2,7 @@ var React = require('react');
 var App = require('./App.react.js');
 
 var browser = function() {
-  var div = document.querySelector('.app');
+  var div = document.querySelector('[data-js="appMain"]');
   React.render(<App />, div);
 };
 
