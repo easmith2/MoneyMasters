@@ -45,11 +45,12 @@
 ### VIEWS
 
 **Home**
- - index (login page, no access if not authorized)
+ - index (login page, always redirect here if current user not auth)
 
 **User**
- - index (nav avail to budget(s), accounts, user profile)
- - show (user profile)
+ - index
+   - nav avail to budget(s), accounts, user profile)
+ - show (display user's profile)
 
 **Budget**
  - show
@@ -62,6 +63,6 @@
 
 **Accounts**
  - index
-   - all transactions from all accounts shown
+   - display all transactions from all accounts
  - show
-   - all transactions from selected account shown
+   - display all transactions from selected account
