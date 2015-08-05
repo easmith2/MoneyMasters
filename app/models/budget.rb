@@ -4,5 +4,5 @@ class Budget < ActiveRecord::Base
   has_many :categories, through: :budget_categories
   has_many :transactions
 
-  validates :title, presence: true
+  validates :title, :start_date, :end_date, presence: true
 end

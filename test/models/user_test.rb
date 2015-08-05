@@ -20,6 +20,15 @@ class UserTest < ActiveSupport::TestCase
     assert_instance_of Budget, @user.budgets.new
   end
 
+  test 'has many categories' do
+    assert_respond_to @user, :categories
+    assert_instance_of Category, @user.categories.new
+  end
+
+  test 'has many transactions' do
+    assert_respond_to @user, :transactions
+    assert_instance_of Transaction, @user.transactions.new
+  end
 
 
 end
