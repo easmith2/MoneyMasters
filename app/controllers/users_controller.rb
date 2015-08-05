@@ -6,9 +6,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.json { render json: status: 200 }
+        format.json { render nothing: true, status: 200 }
       else
-        format.json { render json: status: 422 }
+        format.json { render nothing: true, status: 422 }
       end
     end
   end
