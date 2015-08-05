@@ -4,8 +4,8 @@ This is a collaborative project for weeks 8 & 9 at The Iron Yard in Charleston, 
 
 Speaking of tools & technologies, here is a summary of the primary tools we used in this project:
 * Ruby on Rails
-* React.js (we also have HTML views in case JavaScript is turned off)
-* Director for client side routing
+* React.js
+* Director, for client side routing
 * Sass
 * Postgres
 
