@@ -5,12 +5,6 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:david)
   end
 
-  test 'GET #index' do
-    get :index
-    assert_equal [@user], assigns(:users)
-    assert_response :success
-  end
-
   test 'creates with valid attributes and redirects' do
     assert_difference('User.count', 1) do
       post :create, user: { username: 'ThreeBudgeteers' }
@@ -18,11 +12,10 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(assigns(:user))
   end
 
-  test 'renders new, does not create with invalid attributes' do
+  test 'does not create with invalid attributes' do
     assert_no_difference('User.count') do
       post :create, user: { username: '' }
     end
-    assert_template :new # will we actually have a 'new' template?
   end
 
   test 'updates with valid attributes and redirects' do
@@ -35,7 +28,4 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(@user)
   end
 
-  test 'renders edit, does not update with invalid attributes' do
-    skip
-  end
 end
