@@ -11,6 +11,7 @@ gem 'haml-rails'
 
 group :development, :test do
   gem 'browserify-rails'
+  gem 'faker'
   gem 'pry'
   gem 'sdoc', '~> 0.4.0', group: :doc
   gem 'spring'
