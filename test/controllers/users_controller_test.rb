@@ -36,6 +36,6 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test 'renders edit, does not update with invalid attributes' do
-
+    skip
   end
 end
