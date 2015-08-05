@@ -7,14 +7,14 @@ class UsersControllerTest < ActionController::TestCase
 
   test 'creates with valid attributes and redirects' do
     assert_difference('User.count', 1) do
-      post :create, user: { username: 'ThreeBudgeteers' }
+      post :create, format: :json, user: { username: 'ThreeBudgeteers' }
     end
-    assert_redirected_to user_path(assigns(:user))
+    assert_response 200
   end
 
   test 'does not create with invalid attributes' do
     assert_no_difference('User.count') do
-      post :create, user: { username: '' }
+      post :create, format: :json, user: { username: '' }
     end
   end
 
