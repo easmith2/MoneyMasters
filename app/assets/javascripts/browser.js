@@ -3,7 +3,9 @@ var App = require('./App.react.js');
 
 var browser = function() {
   var div = document.querySelector('[data-js="appMain"]');
-  React.render(<App />, div);
+  if (div) {
+    React.render(<App />, div);
+  }
 };
 
 module.exports = browser;
