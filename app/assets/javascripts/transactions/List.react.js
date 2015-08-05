@@ -7,21 +7,21 @@ var List = React.createClass({
       <table>
         <tr>
           <th>Date</th>
-          <th>Payee</th>
-          <th>Credit</th>
-          <th>Debit</th>
-          <th>Memo</th>
           <th>Budget</th>
           <th>Category</th>
+          <th>Payee</th>
+          <th>Memo</th>
+          <th>Credit</th>
+          <th>Debit</th>
         </tr>
-        {this._buildItems()}
+        {this._buildTransactionList()}
       </table>
     );
   },
 
-  _buildItems: function() {
-    return this.props.transactions.map(function(item) {
-      return <Transaction data={item} key={item.id} />
+  _buildTransactionList: function() {
+    return this.props.transactions.map(function(transaction) {
+      return <Transaction data={transaction} key={transaction.id} />
     });
   }
 });
