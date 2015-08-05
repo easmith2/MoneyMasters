@@ -2,9 +2,9 @@ require 'test_helper'
 
 class BudgetTest < ActiveSupport::TestCase
   def setup
-    @user = users(:one)
-    @budget = budgets(:one)
-    @budget.user = @user
+    
+    @budget = budgets(:january)
+
   end
 
   test 'the fixture is valid' do

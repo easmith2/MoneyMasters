@@ -1,3 +1,5 @@
 january:
   user: david
   title: MyTestBudget
+  start_date: 2015-01-01
+  end_date: 2015-01-31
