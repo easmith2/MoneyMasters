@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  occurred_on: 2015-08-04
+  payee: MyString
+  credit: 1
+  debit: 1
+  memo: MyString
+  budget_id: 1
+  category_id: 1
+  user_id: 1
+
+two:
+  occurred_on: 2015-08-04
+  payee: MyString
+  credit: 1
+  debit: 1
+  memo: MyString
+  budget_id: 1
+  category_id: 1
+  user_id: 1
