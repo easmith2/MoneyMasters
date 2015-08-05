@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  budget_id: 1
-  category_id: 1
+rent:
+  budget: january
+  category: rent
   allocation: 1
   beginning_balance: 1
 
-two:
-  budget_id: 1
-  category_id: 1
+food:
+  budget: january
+  category: food
   allocation: 1
   beginning_balance: 1
