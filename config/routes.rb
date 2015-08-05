@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :users, only: [:index, :create] do
-    resources :budgets, only: [:index, :create]
-    resources :categories, only: [:index, :create]
-    resources :transactions, only: [:index, :create]
+  resources :users, except: [:index, :show, :new, :edit] do
+    resources :budgets, except: [:index, :show, :new, :edit]
+    resources :transactions, except: [:show, :new, :edit]
+    resources :categories, except: [:show, :new, :edit]
   end
 
 end
