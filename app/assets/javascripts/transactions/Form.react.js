@@ -5,13 +5,6 @@ var Form = React.createClass({
     this._clearInputs();
   },
 
-  _clearInputs: function() {
-    var self = this;
-    [ 'occurred_on', 'budget', 'category', 'payee', 'memo', 'credit', 'debit' ].forEach(function(item) {
-      self.refs[item].getDOMNode().value = '';
-    });
-  },
-
   render: function() {
     return (
       <tr>
@@ -74,6 +67,13 @@ var Form = React.createClass({
     };
 
     this.props.createTransaction(data);
+  },
+
+  _clearInputs: function() {
+    var self = this;
+    [ 'occurred_on', 'budget', 'category', 'payee', 'memo', 'credit', 'debit' ].forEach(function(ref) {
+      self.refs[ref].getDOMNode().value = '';
+    });
   }
 });
 

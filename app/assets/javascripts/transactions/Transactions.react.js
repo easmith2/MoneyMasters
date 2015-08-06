@@ -9,8 +9,8 @@ var Transactions = React.createClass({
       <div>
         <List transactions={this.props.transactions} deleteTransaction={this.props.deleteTransaction} createTransaction={this.props.createTransaction} />
       </div>
-    );
-  },
+    )
+  }
 
 });
 

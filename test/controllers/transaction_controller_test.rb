@@ -20,6 +20,26 @@ class TransactionsControllerTest < ActionController::TestCase
     assert_response 404
   end
 
+  test 'update transaction when valid attributes submitted' do
+    old_payee = @transaction.payee
+    new_payee = 'Some New Vendor'
+    patch :update, format: :json, user_id: @user, id: @transaction, transaction: { payee: new_payee }
+    @transaction.reload
+    refute @transaction.payee == old_payee
+    assert_equal new_payee, @transaction.payee
+    assert_response 202
+  end
+
+  test 'does not update transaction when invalid attributes submitted' do
+    old_payee = @transaction.payee
+    new_payee = ''
+    patch :update, format: :json, user_id: @user, id: @transaction, transaction: { payee: new_payee }
+    @transaction.reload
+    refute @transaction.payee == new_payee
+    assert_equal old_payee, @transaction.payee
+    assert_response 422
+  end
+
   test 'DELETE #destroy' do
     assert_difference('Transaction.count', -1) do
       delete :destroy, user_id: @user, id: @transaction

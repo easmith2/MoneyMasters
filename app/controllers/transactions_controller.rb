@@ -21,9 +21,20 @@ class TransactionsController < ApplicationController
     end
     respond_to do |format|
       if @transaction.save
-        format.json { render nothing: true, status: 201}
+        format.json { render nothing: true, status: 201 }
       else
-        format.json { render json: @transaction.errors, status: 422}
+        format.json { render json: @transaction.errors, status: 422 }
+      end
+    end
+  end
+
+  def update
+    @transaction = get_transaction
+    respond_to do |format|
+      if @transaction.update_attributes(transaction_params)
+        format.json { render nothing: true, status: 202 }
+      else
+        format.json { render json: @transaction.errors, status: 422 }
       end
     end
   end
