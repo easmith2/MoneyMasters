@@ -1,46 +1,69 @@
 var React = require('react');
 
 var Form = React.createClass({
+  componentWillUpdate: function() {
+    this._clearInputs();
+  },
+
+  _clearInputs: function() {
+    var self = this;
+    [ 'occurred_on', 'budget', 'category', 'payee', 'memo', 'credit', 'debit' ].forEach(function(item) {
+      self.refs[item].getDOMNode().value = '';
+    });
+  },
+
   render: function() {
     return (
-      <form onSubmit={this._handleSubmit}>
-        <div>
-          <label htmlFor="occurred_on">Date:</label>
-          <input ref="occurred_on" id="occurred_on" placeholder="year/month/day"/>
-        </div>
-        <div>
-          <label htmlFor="budget">Budget:</label>
-          <input ref="budget" id="budget" />
-        </div>
-        <div>
-          <label htmlFor="category">Category:</label>
-          <input ref="category" id="category" />
-        </div>
-        <div>
-          <label htmlFor="payee">Payee:</label>
-          <input ref="payee" id="payee" />
-        </div>
-        <div>
-          <label htmlFor="memo">Memo:</label>
-          <input ref="memo" id="memo" />
-        </div>
-        <div>
-          <label htmlFor="credit">Credit:</label>
-          <input ref="credit" id="credit" />
-        </div>
-        <div>
-          <label htmlFor="debit">Debit:</label>
-          <input ref="debit" id="debit" />
-        </div>
-        <div>
-          <button>Submit</button>
-        </div>
-      </form>
+      <tr>
+        <form>
+          <td>
+            <div>
+              <input ref="occurred_on" id="occurred_on" placeholder="year/month/day"/>
+            </div>
+          </td>
+          <td>
+            <div>
+              <input ref="budget" id="budget" />
+            </div>
+          </td>
+          <td>
+            <div>
+              <input ref="category" id="category" />
+            </div>
+          </td>
+          <td>
+            <div>
+              <input ref="payee" id="payee" />
+            </div>
+          </td>
+          <td>
+            <div>
+              <input ref="memo" id="memo" />
+            </div>
+          </td>
+          <td>
+            <div>
+              <input ref="credit" id="credit" />
+            </div>
+          </td>
+          <td>
+            <div>
+              <input ref="debit" id="debit" />
+            </div>
+          </td>
+          <td colSpan="2">
+            <div>
+              <button onClick={this._handleSubmit}>Submit</button>
+            </div>
+          </td>
+        </form>
+      </tr>
     );
   },
 
   _handleSubmit: function(e) {
     e.preventDefault();
+    console.log('Submit button clicked');
     var data = {
       occurred_on: this.refs.occurred_on.getDOMNode().value.trim(),
       budget_id: this.refs.budget.getDOMNode().value.trim(),
