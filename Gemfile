@@ -18,3 +18,8 @@ group :development, :test do
   gem 'uglifier', '>= 1.3.0'
   gem 'web-console', '~> 2.0'
 end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end
