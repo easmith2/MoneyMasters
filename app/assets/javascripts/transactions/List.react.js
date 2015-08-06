@@ -1,4 +1,5 @@
 var React = require('react');
+var Form = require('./Form.react');
 var Transaction = require('./Transaction.react');
 
 var List = React.createClass({
@@ -19,6 +20,7 @@ var List = React.createClass({
           </tr>
         </thead>
         <tbody>
+          <Form createTransaction={this.props.createTransaction} />
           {this._buildTransactionList()}
         </tbody>
       </table>
