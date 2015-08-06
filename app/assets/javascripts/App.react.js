@@ -43,7 +43,7 @@ var App = React.createClass({
   },
 
   _setTransactionsIndex: function(err, res) {
-    console.log('Setting State for: Transactions Index data and currentView')
+    console.log('Setting State for: Transactions Index data and currentView');
     if (err) {
       window.alert('Something went wrong: ' + err);
       return;
@@ -57,8 +57,19 @@ var App = React.createClass({
   _buildTransactionsIndex: function() {
     console.log('Building Transaction Index View');
     return (
-      <Transactions transactions={this.state.transactions} />
+      <Transactions transactions={this.state.transactions} createTransaction={this._createTransaction} />
     )
+  },
+
+  _createTransaction: function(data) {
+    console.log('Creating new transaction');
+    data["user_id"] = 1;
+    request
+      .post('/users/1/transactions')
+      .send(data)
+      .set('Accept', 'application/json')
+      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
+      .end(this._viewTransactionsIndex);
   },
 
   render: function() {

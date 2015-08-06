@@ -13,6 +13,7 @@ var List = React.createClass({
           <th>Memo</th>
           <th>Credit</th>
           <th>Debit</th>
+          <th colSpan="2">Actions</th>
         </tr>
         {this._buildTransactionList()}
       </table>
