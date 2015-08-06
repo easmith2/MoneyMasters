@@ -28,7 +28,17 @@ class TransactionsController < ApplicationController
     end
   end
 
-  private
+  def destroy
+    @transaction = get_transaction
+    @transaction.destroy
+    render nothing: true, status: 200
+  end
+
+private
+
+  def get_transaction
+    Transaction.find(params[:id])
+  end
 
   def transaction_params
     params.require(:transaction).permit(:user_id, :occurred_on, :payee, :memo, :budget_id, :category_id, :credit, :debit)

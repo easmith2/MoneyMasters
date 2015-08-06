@@ -2,7 +2,8 @@ require 'test_helper'
 
 class TransactionsControllerTest < ActionController::TestCase
   def setup
-    @user = User.first
+    @user = users(:david)
+    @transaction = transactions(:one)
   end
 
   test 'GET #index returns positive status and items belonging to user' do
@@ -19,4 +20,10 @@ class TransactionsControllerTest < ActionController::TestCase
     assert_response 404
   end
 
+  test 'DELETE #destroy' do
+    assert_difference('Transaction.count', -1) do
+      delete :destroy, user_id: @user, id: @transaction
+    end
+    assert_response 200
+  end
 end
