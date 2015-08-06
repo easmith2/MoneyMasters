@@ -23,32 +23,32 @@ var Form = React.createClass({
           </td>
           <td>
             <div>
-              <input ref="budget" id="budget" />
+              <input ref="budget" id="budget" placeholder="budget"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="category" id="category" />
+              <input ref="category" id="category" placeholder="category"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="payee" id="payee" />
+              <input ref="payee" id="payee" placeholder="payee"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="memo" id="memo" />
+              <input ref="memo" id="memo" placeholder="memo"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="credit" id="credit" />
+              <input ref="credit" id="credit" placeholder="credit"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="debit" id="debit" />
+              <input ref="debit" id="debit" placeholder="debit"/>
             </div>
           </td>
           <td colSpan="2">
@@ -63,7 +63,6 @@ var Form = React.createClass({
 
   _handleSubmit: function(e) {
     e.preventDefault();
-    console.log('Submit button clicked');
     var data = {
       occurred_on: this.refs.occurred_on.getDOMNode().value.trim(),
       budget_id: this.refs.budget.getDOMNode().value.trim(),

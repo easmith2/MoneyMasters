@@ -2,13 +2,11 @@ var React = require('react');
 
 var Transaction = React.createClass({
   _handleDelete: function() {
-    console.log('Delete button clicked');
     event.preventDefault();
     this.props.deleteTransaction(this.props.data);
   },
 
   render: function() {
-    console.log('Creating single transaction');
     return (
       <tr>
         <td>{this.props.data.occurred_on}</td>

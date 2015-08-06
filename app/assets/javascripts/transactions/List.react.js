@@ -28,7 +28,6 @@ var List = React.createClass({
   },
 
   _buildTransactionList: function() {
-    console.log(this.props.transactions);
     return this.props.transactions.map(function(transaction) {
       return <Transaction data={transaction} deleteTransaction={this.props.deleteTransaction} key={transaction.payee + transaction.id} />
     }.bind(this));

@@ -5,7 +5,6 @@ var Form = require('./Form.react');
 var Transactions = React.createClass({
   render: function() {
     console.log('Rendering Transactions');
-    console.log(this.props.transactions);
     return (
       <div>
         <List transactions={this.props.transactions} deleteTransaction={this.props.deleteTransaction} createTransaction={this.props.createTransaction} />
