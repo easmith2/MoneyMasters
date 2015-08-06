@@ -29,7 +29,11 @@ var List = React.createClass({
 
   _buildTransactionList: function() {
     return this.props.transactions.map(function(transaction) {
+<<<<<<< 7bca3dedb9fee9587f54cf22a78667fad0b80f69
       return <Transaction data={transaction} deleteTransaction={this.props.deleteTransaction} key={transaction.payee + transaction.id} />
+=======
+      return <Transaction data={transaction} updateTransaction={this.props.updateTransaction} key={transaction.id} />
+>>>>>>> transaction edit functionality added to the transactions table
     }.bind(this));
   }
 });
