@@ -16,17 +16,14 @@ class UserTransactionsTest < ActionDispatch::IntegrationTest
   # end
 
   test 'creating a new transaction' do
-    @user = users(:david)
-    url = '/users/' + @user.id.to_s
-
-    occurred_on = DateTime.now
+    occurred_on = Date.today
     payee = Faker::Company.name
     credit = Faker::Number.between(1, 200)
     debit = 0
-    memo = Faker::Lorem.words(3)
+    memo = Faker::Lorem.words(3).join(" ")
 
     js do
-      visit (url)
+      visit ('/users/1')
       fill_in 'Date', with: occurred_on
       fill_in 'Payee', with: payee
       fill_in 'Credit', with: credit
@@ -35,7 +32,7 @@ class UserTransactionsTest < ActionDispatch::IntegrationTest
       click_on 'Submit'
 
       within 'table' do
-        assert page.has_content?(occurred_on.strftime('%D %r'))
+        assert page.has_content?(occurred_on)
         assert page.has_content?(payee)
         assert page.has_content?(credit)
         assert page.has_content?(debit)
