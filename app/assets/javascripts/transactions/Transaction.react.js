@@ -63,6 +63,7 @@ var Transaction = React.createClass({
       debit: this.refs.debit.getDOMNode().value.trim(),
     };
     this.props.updateTransaction(data);
+    this.setState({ isEditing: false })
   },
 
   _handleDelete: function() {

@@ -24,11 +24,11 @@ class UserTransactionsTest < ActionDispatch::IntegrationTest
 
     js do
       visit ('/users/1')
-      fill_in 'Date', with: occurred_on
-      fill_in 'Payee', with: payee
-      fill_in 'Credit', with: credit
-      fill_in 'Debit', with: debit
-      fill_in 'Memo', with: memo
+      fill_in 'occurred_on', with: occurred_on
+      fill_in 'payee', with: payee
+      fill_in 'credit', with: credit
+      fill_in 'debit', with: debit
+      fill_in 'memo', with: memo
       click_on 'Submit'
 
       within 'table' do

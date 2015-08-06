@@ -15,6 +15,16 @@ var App = React.createClass({
   // componentWillMount: function() {
   // },
 
+  render: function() {
+    console.log('Rendering App Class');
+    var insert = this.state.currentView();
+    return (
+      <div className="app">
+        { insert }
+      </div>
+    );
+  },
+
   _initRouter: function() {
     console.log('Initializing Router');
   //   var self = this;
@@ -91,16 +101,6 @@ var App = React.createClass({
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
       .end(this._viewTransactionsIndex);
-  },
-
-  render: function() {
-    console.log('Rendering App Class');
-    var insert = this.state.currentView();
-    return (
-      <div className="app">
-        { insert }
-      </div>
-    );
   }
 
 });
