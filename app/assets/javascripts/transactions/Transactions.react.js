@@ -7,7 +7,7 @@ var Transactions = React.createClass({
     console.log('Rendering Transactions');
     return (
       <div>
-        <List transactions={this.props.transactions} deleteTransaction={this.props.deleteTransaction} createTransaction={this.props.createTransaction} />
+        <List transactions={this.props.transactions} createTransaction={this.props.createTransaction} updateTransaction={this.props.updateTransaction} deleteTransaction={this.props.deleteTransaction} />
       </div>
     )
   }
