@@ -11,6 +11,8 @@ var Transaction = React.createClass({
         <td>{this.props.data.memo}</td>
         <td>{this.props.data.credit}</td>
         <td>{this.props.data.debit}</td>
+        <td>Edit</td>
+        <td>Delete</td>
       </tr>
     );
   }
