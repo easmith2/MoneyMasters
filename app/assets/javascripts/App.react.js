@@ -6,28 +6,28 @@ var Transactions = require('./transactions/Transactions.react');
 var App = React.createClass({
   getInitialState: function() {
     console.log('Getting initial state')
+    this._initRouter();
     return {
       currentView: this._viewTransactionsIndex
     }
   },
 
   // componentWillMount: function() {
-    // this._initRouter();
   // },
 
-    // _initRouter: function() {
-    //   var self = this;
-    //   console.log('Initializing Router');
-    //   self.router = Router({
-    //     '/'            : self._showUserBudget,
-    //   });
-    //   self.router.configure({ html5history: true });
-    //   self.router.init();
-    // },
-    //
-    // _navigate: function(href) {
-    //   this.router.setRoute(href);
-    // },
+  _initRouter: function() {
+    console.log('Initializing Router');
+  //   var self = this;
+  //   self.router = Router({
+  //     '/'            : self._showUserBudget,
+  //   });
+  //   self.router.configure({ html5history: true });
+  //   self.router.init();
+  },
+
+  // _navigate: function(href) {
+  //   this.router.setRoute(href);
+  // },
 
   _getData: function(url, callback) {
     console.log('Fetch Data active');
@@ -57,7 +57,7 @@ var App = React.createClass({
   _buildTransactionsIndex: function() {
     console.log('Building Transaction Index View');
     return (
-      <Transactions transactions={this.state.transactions} createTransaction={this._createTransaction} />
+      <Transactions transactions={this.state.transactions} createTransaction={this._createTransaction} deleteTransaction={this._deleteTransaction} />
     )
   },
 
@@ -67,6 +67,16 @@ var App = React.createClass({
     request
       .post('/users/1/transactions')
       .send(data)
+      .set('Accept', 'application/json')
+      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
+      .end(this._viewTransactionsIndex);
+  },
+
+  _deleteTransaction: function(transaction) {
+    console.log('Deleting Transaction');
+    console.log(transaction.id);
+    request
+      .del('/users/1/transactions/' + transaction.id)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
       .end(this._viewTransactionsIndex);
