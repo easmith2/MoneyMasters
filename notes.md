@@ -1,3 +1,23 @@
+users/show.html.haml
+```
+.appMain{ "data-js": "appMain"}
+  .you_need_js
+    %h1
+      This application requires JavaScript
+    %h2
+      Please turn on Javascript and refresh the page
+```
+
+
+
+
+
+
+
+
+
+
+
 clear the form on submit:
 ```
 componentWillUpdate: function() {
