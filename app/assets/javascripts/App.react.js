@@ -1,17 +1,17 @@
 var React = require('react');
 var Router = require('director').Router;
 var request = require('superagent');
+var Header = require('./Header.react');
 var Transactions = require('./transactions/Transactions.react');
 
 var App = React.createClass({
   getInitialState: function() {
     console.log('Getting initial state')
     var path = window.location.pathname.split('/');
-    var current_user = path[2]
-    window.history.pushState(null, null, '/users/' + current_user + '/transactions')
+    var currentUser = path[2];
     return {
-      userId : current_user,
-      currentView: this._viewTransactionsIndex
+      userId : currentUser,
+      currentView: function() { return null }
     }
   },
 
@@ -19,11 +19,17 @@ var App = React.createClass({
     this._initRouter();
   },
 
+  componenDidMount: function() {
+    console.log('Setting route to: ' + window.location.pathname);
+    this._navigate(window.location.pathname);
+  },
+
   render: function() {
     console.log('Rendering App Class');
     var insert = this.state.currentView();
     return (
       <div className="app">
+        <Header navigate={this._navigate} currentUser={this.state.userId} />
         { insert }
       </div>
     );
@@ -33,7 +39,9 @@ var App = React.createClass({
     console.log('Initializing Router');
     var self = this;
     self.router = Router({
-      '/users/:user_id/transactions'  : self._viewTransactionsIndex,
+      '/users/:user_id'              : self._viewTransactionsIndex,
+      '/users/:user_id/transactions' : self._viewTransactionsIndex,
+      '/users/:user_id/profile'      : self._viewProfile
     });
     self.router.configure({ html5history: true });
     self.router.init();
@@ -53,6 +61,7 @@ var App = React.createClass({
 
   _viewTransactionsIndex: function() {
     console.log('Getting all transaction data');
+    window.history.pushState(null, null, '/users/' + this.state.userId + '/transactions');
     this._getData('/users/'+ this.state.userId + '/transactions.json', this._setTransactionsIndex);
   },
 
@@ -105,6 +114,10 @@ var App = React.createClass({
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
       .end(this._viewTransactionsIndex);
+  },
+
+  _viewProfile: function() {
+    console.log('View Profile link activated');
   }
 
 });
