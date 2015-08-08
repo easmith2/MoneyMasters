@@ -2,6 +2,7 @@ class TransactionsController < ApplicationController
   def index
     if current_user
       respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
         format.json { @transactions = current_user.transactions.order(occurred_on: :desc) }
       end
     else
