@@ -14,8 +14,8 @@ var Transaction = React.createClass({
       return (
         <tr>
           <td><input className="transactions__occurredOn" ref="occurred_on" type="text" defaultValue={this.props.data.occurred_on} /></td>
-          <td><input className="transactions__budget" ref="budget" type="text" defaultValue={this.props.data.budget_id} /></td>
-          <td><input className="transactions__category" ref="category" type="text" defaultValue={this.props.data.category_id} /></td>
+          <td><input className="transactions__budget" ref="budget" type="text" defaultValue={this.props.data.budget} /></td>
+          <td><input className="transactions__category" ref="category" type="text" defaultValue={this.props.data.category} /></td>
           <td><input className="transactions__payee" ref="payee" type="text" defaultValue={this.props.data.payee} /></td>
           <td><input className="transactions__memo" ref="memo" type="text" defaultValue={this.props.data.memo} /></td>
           <td><input className="transactions__credit" ref="credit" type="text" defaultValue={this.props.data.credit} /></td>
@@ -29,8 +29,8 @@ var Transaction = React.createClass({
       return (
         <tr onClick={this._handleEdit}>
           <td>{this.props.data.occurred_on}</td>
-          <td>{this.props.data.budget_id}</td>
-          <td>{this.props.data.category_id}</td>
+          <td>{this.props.data.budget}</td>
+          <td>{this.props.data.category}</td>
           <td>{this.props.data.payee}</td>
           <td>{this.props.data.memo}</td>
           <td>{this.props.data.credit}</td>
