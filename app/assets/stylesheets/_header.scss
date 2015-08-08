@@ -1,0 +1,25 @@
+.app__header {
+  background-color: $contrast-dominant;
+  color: $dominant;
+}
+.app__header a {
+  color: $subdominant;
+  line-height: 50px;
+  margin: 0 5px;
+  &:hover {
+    color: $pop;
+  }
+  &:last-of-type {
+    right: 0;
+    position: absolute;
+  }
+}
+.app__headerIcon {
+  display: inline;
+  > img {
+    width: 30px;
+    height: 30px;
+    display: inline;
+    overflow: hidden;
+  }
+}

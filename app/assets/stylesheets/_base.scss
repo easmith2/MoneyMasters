@@ -13,12 +13,16 @@ body {
 body {
   margin: 0;
   font-family: Quicksand, Syncopate, Arial Narrow, sans-serif;
-  color: #4D4D4D;
+  color: $fallback-text;
+  background-color: $base-background;
 }
 a {
   text-decoration: none;
   &:visited {
     color: $subdominant;
+  }
+  &:hover {
+    border-bottom: 1px solid;
   }
 }
 ol {
