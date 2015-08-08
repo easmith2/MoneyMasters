@@ -6,14 +6,18 @@ var Transactions = require('./transactions/Transactions.react');
 var App = React.createClass({
   getInitialState: function() {
     console.log('Getting initial state')
-    this._initRouter();
+    var path = window.location.pathname.split('/');
+    var current_user = path[2]
+    window.history.pushState(null, null, '/users/' + current_user + '/transactions')
     return {
+      userId : current_user,
       currentView: this._viewTransactionsIndex
     }
   },
 
-  // componentWillMount: function() {
-  // },
+  componentWillMount: function() {
+    this._initRouter();
+  },
 
   render: function() {
     console.log('Rendering App Class');
@@ -27,17 +31,17 @@ var App = React.createClass({
 
   _initRouter: function() {
     console.log('Initializing Router');
-  //   var self = this;
-  //   self.router = Router({
-  //     '/'            : self._showUserBudget,
-  //   });
-  //   self.router.configure({ html5history: true });
-  //   self.router.init();
+    var self = this;
+    self.router = Router({
+      '/users/:user_id/transactions'  : self._viewTransactionsIndex,
+    });
+    self.router.configure({ html5history: true });
+    self.router.init();
   },
 
-  // _navigate: function(href) {
-  //   this.router.setRoute(href);
-  // },
+  _navigate: function(href) {
+    this.router.setRoute(href);
+  },
 
   _getData: function(url, callback) {
     console.log('Fetch Data active');
@@ -49,7 +53,7 @@ var App = React.createClass({
 
   _viewTransactionsIndex: function() {
     console.log('Getting all transaction data');
-    this._getData('/users/1/transactions.json', this._setTransactionsIndex);
+    this._getData('/users/'+ this.state.userId + '/transactions.json', this._setTransactionsIndex);
   },
 
   _setTransactionsIndex: function(err, res) {
@@ -73,9 +77,9 @@ var App = React.createClass({
 
   _createTransaction: function(data) {
     console.log('Creating new transaction');
-    data["user_id"] = 1;
+    data["user_id"] = this.state.userId;
     request
-      .post('/users/1/transactions/')
+      .post('/users/'+ this.state.userId + '/transactions/')
       .send(data)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
@@ -84,9 +88,9 @@ var App = React.createClass({
 
   _updateTransaction: function(data) {
     console.log('Updating transaction', data.id);
-    data["user_id"] = 1;
+    data["user_id"] = this.state.userId;
     request
-      .patch('/users/1/transactions/' + data.id)
+      .patch('/users/'+ this.state.userId + '/transactions/' + data.id)
       .send(data)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
@@ -97,7 +101,7 @@ var App = React.createClass({
     console.log('Deleting Transaction');
     console.log(transaction.id);
     request
-      .del('/users/1/transactions/' + transaction.id)
+      .del('/users/'+ this.state.userId + '/transactions/' + transaction.id)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
       .end(this._viewTransactionsIndex);
