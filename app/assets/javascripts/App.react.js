@@ -6,7 +6,8 @@ var Transactions = require('./transactions/Transactions.react');
 
 var App = React.createClass({
   getInitialState: function() {
-    console.log('Getting initial state')
+    console.log('Getting initial state');
+    console.log(window.location.pathname);
     var path = window.location.pathname.split('/');
     var currentUser = path[2];
     return {
@@ -39,9 +40,11 @@ var App = React.createClass({
     console.log('Initializing Router');
     var self = this;
     self.router = Router({
-      '/users/:user_id'              : self._viewTransactionsIndex,
-      '/users/:user_id/transactions' : self._viewTransactionsIndex,
-      '/users/:user_id/profile'      : self._viewProfile
+      '/users/:user_id'              : self._viewTransactions,
+      '/users/:user_id/transactions' : self._viewTransactions,
+      '/users/:user_id/profile'      : self._viewProfile,
+      '/users/:user_id/budgets'      : self._viewBudgets,
+      '/users/:user_id/categories'   : self._viewCategories
     });
     self.router.configure({ html5history: true });
     self.router.init();
@@ -59,9 +62,9 @@ var App = React.createClass({
       .end(callback);
   },
 
-  _viewTransactionsIndex: function() {
-    console.log('Getting all transaction data');
-    window.history.pushState(null, null, '/users/' + this.state.userId + '/transactions');
+  _viewTransactions: function() {
+    console.log('View Transactions activated');
+    window.history.pushState(null, null, '/users/' + this.state.userId + 'transactions');
     this._getData('/users/'+ this.state.userId + '/transactions.json', this._setTransactionsIndex);
   },
 
@@ -92,7 +95,7 @@ var App = React.createClass({
       .send(data)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-      .end(this._viewTransactionsIndex);
+      .end(this._viewTransactions);
   },
 
   _updateTransaction: function(data) {
@@ -103,7 +106,7 @@ var App = React.createClass({
       .send(data)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-      .end(this._viewTransactionsIndex);
+      .end(this._viewTransactions);
   },
 
   _deleteTransaction: function(transaction) {
@@ -113,11 +116,19 @@ var App = React.createClass({
       .del('/users/'+ this.state.userId + '/transactions/' + transaction.id)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-      .end(this._viewTransactionsIndex);
+      .end(this._viewTransactions);
   },
 
   _viewProfile: function() {
-    console.log('View Profile link activated');
+    console.log('View Profile activated');
+  },
+
+  _viewBudgets: function() {
+    console.log('View Budgets activated');
+  },
+
+  _viewCategories: function() {
+    console.log('View Categories activated');
   }
 
 });
