@@ -1,0 +1,16 @@
+table {
+  border-spacing: 0;
+}
+th,
+td {
+  padding: 5px 10px;
+}
+tr:nth-child(even) {
+  background-color: $contrast-dominant;
+}
+tr:hover {
+  background-color: $contrast-subdominant;
+}
+tr button {
+  padding-right: 15px;
+}
