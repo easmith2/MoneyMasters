@@ -11,42 +11,42 @@ var Form = React.createClass({
         <form>
           <td>
             <div>
-              <input ref="occurred_on" id="occurred_on" placeholder="year/month/day"/>
+              <input className="transactions__occurredOn" ref="occurred_on" id="occurred_on" placeholder="year/month/day"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="budget" id="budget" placeholder="budget"/>
+              <input className="transactions__budget" ref="budget" id="budget" placeholder="budget"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="category" id="category" placeholder="category"/>
+              <input className="transactions__category" ref="category" id="category" placeholder="category"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="payee" id="payee" placeholder="payee"/>
+              <input className="transactions__payee" ref="payee" id="payee" placeholder="payee"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="memo" id="memo" placeholder="memo"/>
+              <input className="transactions__memo" ref="memo" id="memo" placeholder="memo"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="credit" id="credit" placeholder="credit"/>
+              <input className="transactions__credit" ref="credit" id="credit" placeholder="credit"/>
             </div>
           </td>
           <td>
             <div>
-              <input ref="debit" id="debit" placeholder="debit"/>
+              <input className="transactions__debit" ref="debit" id="debit" placeholder="debit"/>
             </div>
           </td>
           <td colSpan="2">
             <div>
-              <button onClick={this._handleSubmit}>Submit</button>
+              <button className="transactions__submitNew" onClick={this._handleSubmit}>Submit</button>
             </div>
           </td>
         </form>
