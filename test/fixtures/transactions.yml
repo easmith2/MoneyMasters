@@ -8,7 +8,7 @@ one:
   memo: MyString
   budget: january
   category: food
-  user: david
+  user: foo
 
 two:
   occurred_on: 2015-08-04
@@ -18,4 +18,4 @@ two:
   memo: MyString
   budget: january
   category: rent
-  user: david
+  user: bar

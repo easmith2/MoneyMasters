@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TransactionsControllerTest < ActionController::TestCase
   def setup
-    @user = users(:david)
+    @user = users(:foo)
     @transaction = transactions(:one)
   end
 
@@ -16,7 +16,7 @@ class TransactionsControllerTest < ActionController::TestCase
   end
 
   test 'GET #index returns 404 with invalid user_id' do
-    get :index, user_id: 7, format: :json
+    get :index, user_id: -7, format: :json
     assert_response 404
   end
 
