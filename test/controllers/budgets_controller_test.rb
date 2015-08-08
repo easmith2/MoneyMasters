@@ -3,7 +3,7 @@ require 'test_helper'
 class BudgetsControllerTest < ActionController::TestCase
   def setup
     @budget = budgets(:january)
-    @user = users(:david)
+    @user = users(:foo)
     @category = categories(:rent)
   end
 

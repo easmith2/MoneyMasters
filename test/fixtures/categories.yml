@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 rent:
-  user: david
+  user: foo
   title: rent
 
 food:
-  user: david
+  user: foo
   title: food
