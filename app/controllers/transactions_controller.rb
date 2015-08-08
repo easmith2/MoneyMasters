@@ -1,13 +1,11 @@
 class TransactionsController < ApplicationController
   def index
-    if user = User.find_by(id: (params[:user_id]))
+    if current_user
       respond_to do |format|
-        format.json { @transactions = user.transactions.order(occurred_on: :desc) }
+        format.json { @transactions = current_user.transactions.order(occurred_on: :desc) }
       end
     else
-      respond_to do |format|
-        format.json { render nothing: true, status: 404 }
-      end
+      redirect_to root_path
     end
   end
 
