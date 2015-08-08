@@ -28,3 +28,14 @@ tr button {
 tbody input {
   width: auto;
 }
+.transactions__debit,
+.transactions__credit {
+  width: 50px;
+}
+.transactions__budget,
+.transactions__occurredOn {
+  width: 95px;
+}
+.transactions__payee {
+  width: 275px;
+}
