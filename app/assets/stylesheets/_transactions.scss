@@ -1,0 +1,30 @@
+table {
+  border-spacing: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: scroll;
+  width: 90%;
+}
+th,
+td {
+  padding: 5px 10px;
+}
+th {
+  background-color: $subdominant;
+  color: $dominant;
+  font-family: Quicksand;
+  font-weight: 700;
+}
+tr:nth-child(even) {
+  background-color: $contrast-dominant;
+}
+tr:hover {
+  background-color: $contrast-subdominant;
+}
+tr button {
+  padding-right: 15px;
+}
+tbody input {
+  width: auto;
+}

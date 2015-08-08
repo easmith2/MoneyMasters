@@ -1,0 +1,30 @@
+html {
+  box-sizing: border-box;
+}
+html,
+body {
+  font-size: 14px;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  font-family: Quicksand, Syncopate, Arial Narrow, sans-serif;
+  color: $fallback-text;
+  background-color: $base-background;
+}
+a {
+  text-decoration: none;
+  &:visited {
+    color: $subdominant;
+  }
+  &:hover {
+    border-bottom: 1px solid;
+  }
+}
+ol {
+  margin: 0;
+}
