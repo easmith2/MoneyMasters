@@ -22,13 +22,12 @@ var Transaction = React.createClass({
           <td><input className="transactions__debit" ref="debit" type="text" defaultValue={this.props.data.debit} /></td>
           <td>
             <button className="transactions__saveEdit" onClick={this._handleSave}>Save</button>
-            <button className="transactions__delete" onClick={this._handleDelete}>Delete</button>
           </td>
         </tr>
       );
     } else {
       return (
-        <tr>
+        <tr onClick={this._handleEdit}>
           <td>{this.props.data.occurred_on}</td>
           <td>{this.props.data.budget_id}</td>
           <td>{this.props.data.category_id}</td>
@@ -37,7 +36,6 @@ var Transaction = React.createClass({
           <td>{this.props.data.credit}</td>
           <td>{this.props.data.debit}</td>
           <td>
-            <button className="transactions__edit" onClick={this._handleEdit}>Edit</button>
             <button className="transactions__delete" onClick={this._handleDelete}>Delete</button>
           </td>
         </tr>
