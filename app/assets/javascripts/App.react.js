@@ -64,7 +64,6 @@ var App = React.createClass({
 
   _viewTransactions: function() {
     console.log('View Transactions activated');
-    window.history.pushState(null, null, '/users/' + this.state.userId + '/transactions');
     this._getData('/users/'+ this.state.userId + '/transactions.json', this._setTransactionsIndex);
   },
 

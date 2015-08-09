@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   def index
     if current_user
       respond_to do |format|
-        format.html { redirect_to user_path(current_user) }
+        format.html { render template: 'users/show' }
         format.json { @transactions = current_user.transactions.order(occurred_on: :desc) }
       end
     else
@@ -13,19 +13,21 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
     respond_to do |format|
-      if category = Category.find_by(title: params[:category])
-        @transaction.category = category
-        unless @transaction[:debit]
-          @transaction[:debit] = 0
+      if current_user
+        if category = Category.find_by(title: params[:category])
+          @transaction.category = category
+          unless @transaction[:debit]
+            @transaction[:debit] = 0
+          end
+          unless @transaction[:credit]
+            @transaction[:credit] = 0
+          end
+          if @transaction.save
+            format.json { render nothing: true, status: 201 }
+          end
+        else
+          format.json { render json: @transaction.errors, status: 422 }
         end
-        unless @transaction[:credit]
-          @transaction[:credit] = 0
-        end
-        if @transaction.save
-          format.json { render nothing: true, status: 201 }
-        end
-      else
-        format.json { render json: @transaction.errors, status: 422 }
       end
     end
   end
@@ -53,7 +55,7 @@ class TransactionsController < ApplicationController
 private
 
   def get_transaction
-    Transaction.find(params[:id])
+    current_user.transactions.find(params[:id])
   end
 
   def transaction_params
