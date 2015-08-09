@@ -90,12 +90,20 @@ var App = React.createClass({
   _createTransaction: function(data) {
     console.log('Creating new transaction');
     data["user_id"] = this.state.userId;
+    sessionStorage.display = this._viewTransactions;
     request
       .post('/users/'+ this.state.userId + '/transactions/')
       .send(data)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-      .end(this._viewTransactions);
+      .end(function(err, res) {
+        if (err) {
+          window.alert("Something went wrong: \n" + res.error.message );
+          return;
+        } else {
+          this._viewTransactions();
+        }
+      }.bind(this));
   },
 
   _updateTransaction: function(data) {
@@ -106,7 +114,14 @@ var App = React.createClass({
       .send(data)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-      .end(this._viewTransactions);
+      .end(function(err, res) {
+        if (err) {
+          window.alert("Something went wrong: \n" + res.error.message );
+          return;
+        } else {
+          this._viewTransactions();
+        }
+      }.bind(this));
   },
 
   _deleteTransaction: function(transaction) {
@@ -129,7 +144,7 @@ var App = React.createClass({
 
   _viewCategories: function() {
     console.log('View Categories activated');
-  }
+  },
 
 });
 

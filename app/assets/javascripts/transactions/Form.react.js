@@ -58,8 +58,8 @@ var Form = React.createClass({
     e.preventDefault();
     var data = {
       occurred_on: this.refs.occurred_on.getDOMNode().value.trim(),
-      budget_id: this.refs.budget.getDOMNode().value.trim(),
-      category_id: this.refs.category.getDOMNode().value.trim(),
+      budget: this.refs.budget.getDOMNode().value.trim(),
+      category: this.refs.category.getDOMNode().value.trim(),
       payee: this.refs.payee.getDOMNode().value.trim(),
       memo: this.refs.memo.getDOMNode().value.trim(),
       credit: this.refs.credit.getDOMNode().value.trim(),
