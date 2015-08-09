@@ -2,7 +2,7 @@
 
 one:
   occurred_on: 2015-08-04
-  payee: MyString
+  payee: Payee One
   credit: 0
   debit: 1
   memo: MyString
@@ -12,7 +12,7 @@ one:
 
 two:
   occurred_on: 2015-08-04
-  payee: MyString
+  payee: Payee Two
   credit: 1
   debit: 0
   memo: MyString

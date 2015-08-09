@@ -3,7 +3,10 @@ class TransactionsController < ApplicationController
     if current_user
       respond_to do |format|
         format.html { render template: 'users/show' }
-        format.json { @transactions = current_user.transactions.order(occurred_on: :desc) }
+        format.json do
+          @transactions = current_user.transactions.order(occurred_on: :desc)
+          render status: 200
+        end
       end
     else
       redirect_to root_path
