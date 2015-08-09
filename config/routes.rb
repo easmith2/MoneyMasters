@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     get 'profile', to: 'users#show'
-    get 'categories', to: 'users#show'
     get 'budgets', to: 'users#show' 
     resources :budgets, except: [:new, :edit]
     resources :transactions, except: [:show, :new, :edit]
