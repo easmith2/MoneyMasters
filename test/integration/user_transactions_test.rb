@@ -20,6 +20,7 @@ class UserTransactionsTest < ActionDispatch::IntegrationTest
       click_on 'Log in'
 
       occurred_on = Date.today
+      category = 'food'
       payee = Faker::Company.name
       credit = Faker::Number.between(1, 200)
       debit = 0
@@ -27,6 +28,7 @@ class UserTransactionsTest < ActionDispatch::IntegrationTest
 
       js do
         fill_in 'occurred_on', with: occurred_on
+        fill_in 'category', with: category
         fill_in 'payee', with: payee
         fill_in 'credit', with: credit
         fill_in 'debit', with: debit
