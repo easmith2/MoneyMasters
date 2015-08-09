@@ -36,7 +36,7 @@ var Transaction = React.createClass({
           <td>{this.props.data.credit}</td>
           <td>{this.props.data.debit}</td>
           <td>
-            <button className="transactions__delete" onClick={this._handleDelete}>Delete</button>
+            <a className="transactions__delete" onClick={this._handleDelete}><img src="/assets/delete.svg" /></a>
           </td>
         </tr>
       );
