@@ -21,7 +21,7 @@ var Transaction = React.createClass({
           <td><input className="transactions__credit" ref="credit" type="text" defaultValue={this.props.data.credit} /></td>
           <td><input className="transactions__debit" ref="debit" type="text" defaultValue={this.props.data.debit} /></td>
           <td>
-            <button className="transactions__saveEdit" onClick={this._handleSave}>Save</button>
+            <button className="transactions__saveEdit" onClick={this._handleSave}>Add New</button>
           </td>
         </tr>
       );
@@ -36,7 +36,7 @@ var Transaction = React.createClass({
           <td>{this.props.data.credit}</td>
           <td>{this.props.data.debit}</td>
           <td>
-            <button className="transactions__delete" onClick={this._handleDelete}>Delete</button>
+            <a className="transactions__delete" onClick={this._handleDelete}><img src="/assets/delete.svg" /></a>
           </td>
         </tr>
       );
