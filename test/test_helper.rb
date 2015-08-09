@@ -19,3 +19,7 @@ class ActionDispatch::IntegrationTest
     Capybara.current_driver = Capybara.default_driver
   end
 end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
+end
