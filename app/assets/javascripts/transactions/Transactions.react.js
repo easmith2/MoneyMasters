@@ -1,6 +1,5 @@
 var React = require('react');
 var List = require('./List.react');
-var Form = require('./Form.react');
 
 var Transactions = React.createClass({
   render: function() {
