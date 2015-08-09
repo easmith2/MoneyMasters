@@ -46,7 +46,7 @@ var Form = React.createClass({
           </td>
           <td>
             <div>
-              <a className="transactions__submitNew" onClick={this._handleSubmit}>Add&nbsp;New</a>
+              <button className="transactions__submitNew" onClick={this._handleSubmit}>Add New</button>
             </div>
           </td>
         </form>
