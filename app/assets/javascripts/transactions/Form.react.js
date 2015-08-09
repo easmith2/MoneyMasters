@@ -44,9 +44,9 @@ var Form = React.createClass({
               <input className="transactions__debit" ref="debit" id="debit" placeholder="debit"/>
             </div>
           </td>
-          <td colSpan="2">
+          <td>
             <div>
-              <button className="transactions__submitNew" onClick={this._handleSubmit}>Submit</button>
+              <a className="transactions__submitNew" onClick={this._handleSubmit}>Add&nbsp;New</a>
             </div>
           </td>
         </form>

@@ -13,7 +13,6 @@ td {
 th {
   background-color: $subdominant;
   color: $dominant;
-  font-family: Quicksand;
   font-weight: 700;
 }
 tr:nth-child(even) {
@@ -39,10 +38,19 @@ tbody input {
 .transactions__payee {
   width: 275px;
 }
+.transactions__actionTd {
+  text-align: center;
+}
+.transactions__submitNew {
+  padding: 4px;
+  border-radius: 10px;
+  background-color: $pop;
+}
 .transactions__delete {
-  img {
-    width: 20px;
-    height: 20px;
+  > img { display: none; }
+  > div { display: inherit; }
+  .transactions__actionTd:hover & {
+    > img { display: inherit; }
+    > div { display: none; }
   }
-  margin: 0 20px;
 }
