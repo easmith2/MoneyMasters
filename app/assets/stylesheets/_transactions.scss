@@ -3,12 +3,12 @@ table {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  overflow: scroll;
   width: 90%;
 }
 th,
 td {
   padding: 5px 10px;
+  margin: 0;
 }
 th {
   background-color: $subdominant;
@@ -21,21 +21,17 @@ tr:nth-child(even) {
 tr:hover {
   background-color: $contrast-subdominant;
 }
-tr button {
-  padding-right: 15px;
-}
-tbody input {
-  width: auto;
-}
 .transactions__debit,
 .transactions__credit {
   width: 50px;
 }
 .transactions__budget,
+.transactions__category,
 .transactions__occurredOn {
   width: 95px;
 }
-.transactions__payee {
+.transactions__payee,
+.transactions__memo {
   width: 275px;
 }
 .transactions__actionTd {
