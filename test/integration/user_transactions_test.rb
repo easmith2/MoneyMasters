@@ -17,7 +17,7 @@ class UserTransactionsTest < ActionDispatch::IntegrationTest
       click_on 'Log In'
       fill_in 'user_email', with: user
       fill_in 'user_password', with: password
-      click_on 'Log in'
+      click_on 'Enter'
 
       occurred_on = Date.today
       category = 'food'
