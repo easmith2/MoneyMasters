@@ -1,0 +1,48 @@
+.form__title {
+  margin: 5px auto;
+  @include titleStyle(30px, $subdominant, 0.3rem);
+}
+.form__pwField input,
+.form__emailField input {
+  border: none;
+  border-bottom: 1px solid;
+  background-color: inherit;
+  width: 200px;
+  cursor: text;
+  text-align: center;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: $fallback-text;
+  margin: 10px auto;
+}
+.form__pwField label,
+.form__emailField label {
+  font-size: 1rem;
+}
+.form__pwField em {
+  font-size: 0.8rem;
+}
+.form__loginToggle {
+  margin: 10px auto;
+  font-size: 1rem;
+}
+
+.form__submit input {
+  outline: none;
+  border: none;
+  background-color: $dominant;
+  border-radius: 20px;
+  padding: 0 10px;
+  @include titleStyle(25px, $subdominant, 0.3rem);
+  &:hover {
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
+.form__sharedLinks {
+  font-size: 1rem;
+  margin: 15px auto;
+}
