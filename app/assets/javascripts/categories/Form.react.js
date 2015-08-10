@@ -7,7 +7,7 @@ var Form = React.createClass({
 
   render: function() {
     return (
-      <form>
+      <form className="categories__singleCateg">
         <div className="categories__title">
           <input ref="title" id="title" placeholder="title" />
         </div>

@@ -25,6 +25,7 @@ tr:nth-child(even) {
 }
 tr:hover {
   background-color: $contrast-subdominant;
+  cursor: pointer;
 }
 td {
   text-overflow: ellipsis;
