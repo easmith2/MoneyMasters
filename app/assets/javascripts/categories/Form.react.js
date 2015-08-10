@@ -8,11 +8,14 @@ var Form = React.createClass({
   render: function() {
     return (
       <form>
-        <div>
-          <input className="category__title" ref="title" id="title" placeholder="title" />
+        <div className="categories__title">
+          <input ref="title" id="title" placeholder="title" />
         </div>
-        <div>
-          <button className="transactions__submitNew" onClick={this._handleSubmit}>Add New</button>
+        <div className="categories__action">
+          <a className="categories__submitNew" onClick={this._handleSubmit}>
+            <div>+</div>
+            <p>Add New</p>
+          </a>
         </div>
       </form>
     );

@@ -6,9 +6,9 @@ var List = React.createClass({
   render: function() {
     console.log('Creating categories list');
     return (
-      <div>
-        <Form createCategory={this.props.createCategory}/>
-        <ul>
+      <div className="categories__container">
+        <ul className="categories__list">
+          <li><Form createCategory={this.props.createCategory}/></li>
           {this._buildCategoriesList()}
         </ul>
       </div>

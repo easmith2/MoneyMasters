@@ -21,7 +21,10 @@ var Transaction = React.createClass({
           <td><input className="transactions__credit" ref="credit" type="text" defaultValue={this.props.data.credit} /></td>
           <td><input className="transactions__debit" ref="debit" type="text" defaultValue={this.props.data.debit} /></td>
           <td className="transactions__actionTd">
-            <button className="transactions__saveEdit" onClick={this._handleSave}>Save</button>
+            <a className="transactions__saveEdit" onClick={this._handleSave}>
+              <img src="/assets/save.svg"></img>
+              <div>Save</div>
+            </a>
           </td>
         </tr>
       );

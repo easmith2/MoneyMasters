@@ -1,0 +1,67 @@
+.categories__container {
+  background-color: $dominant;
+  margin: 30px auto;
+  padding: 1px;
+  width: 400px;
+  input {
+    border: none;
+    outline: none;
+    height: 25px;
+    width: 150px;
+    background: $base-background;
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: italic;
+  }
+}
+.categories__list {
+  list-style: none;
+  > li {
+    margin: 2px;
+  }
+}
+.categories__header {
+  @include titleStyle(30px, $contrast-subdominant);
+  text-align: center;
+}
+.categories__title {
+  display: inline-block;
+  width: 150px;
+  font-size: 1.2rem;
+  line-height: 25px;
+  margin: 0 10px;
+}
+.categories__action {
+  display: inline-block;
+  width: 120px;
+  text-align: center;
+  &:hover {
+    border-bottom: none;
+    cursor: pointer;
+  }
+}
+.categories__submitNew {
+  > div { display: none; }
+  > p { display: inherit; }
+  .categories__action:hover & {
+    > div { display: inherit; font-size: 2rem; line-height: 13px; border-bottom: none; vertical-align: bottom}
+    > p { display: none; }
+  }
+}
+.categories__delete {
+  > img { display: none; @include size(14px); }
+  > div { display: inherit; color: $delete-red }
+  .categories__action:hover & {
+    > img { display: inherit; border-bottom: none; }
+    > div { display: none; }
+  }
+}
+.categories__saveEdit {
+  > img { display: none; @include size(14px); }
+  > div { display: inherit; }
+  .categories__action:hover & {
+    > img { display: inherit; border-bottom: none; }
+    > div { display: none; }
+  }
+}

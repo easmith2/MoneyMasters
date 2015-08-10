@@ -12,19 +12,28 @@ var Category = React.createClass({
   _buildDiv: function() {
     if (this.state.isEditing) {
       return (
-        <div>
-          <input className="category__title" ref="title" type="text" defaultValue={this.props.data.title} />
-          <button className="transactions__saveEdit" onClick={this._handleSave}>Save</button>
+        <div className="categories__singleCateg">
+          <input className="categories__title" ref="title" type="text" autofocus="true" defaultValue={this.props.data.title} />
+          <div className="categories__action">
+            <a className="categories__saveEdit" onClick={this._handleSave}>
+              <img src="/assets/save.svg"></img>
+              <div>Save</div>
+            </a>
+          </div>
         </div>
       );
     } else {
       return (
-        <div onClick={this._handleEdit}>
-          {this.props.data.title}
-          <a className="transactions__delete" onClick={this._handleDelete}>
-            <img src="/assets/delete.svg"></img>
-            <div>Delete</div>
-          </a>
+        <div className="categories__singleCateg" onClick={this._handleEdit}>
+          <div className="categories__title">
+            {this.props.data.title}
+          </div>
+          <div className="categories__action">
+            <a className="categories__delete" onClick={this._handleDelete}>
+              <img src="/assets/delete.svg"></img>
+              <div>Delete</div>
+            </a>
+          </div>
         </div>
       );
     }

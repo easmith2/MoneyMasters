@@ -1,9 +1,14 @@
+.transactions__header {
+  @include titleStyle(30px, $contrast-subdominant);
+  text-align: center;
+}
 table {
   border-spacing: 0;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   width: 90%;
+  table-layout: fixed;
 }
 th,
 td {
@@ -21,32 +26,66 @@ tr:nth-child(even) {
 tr:hover {
   background-color: $contrast-subdominant;
 }
+td {
+  text-overflow: ellipsis;
+  input {
+    border: none;
+    outline: none;
+    height: 20px;
+    width: 100%;
+    background: inherit;
+    border-bottom: 1px solid $dominant;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: italic;
+  }
+}
 .transactions__debit,
 .transactions__credit {
   width: 50px;
 }
 .transactions__budget,
-.transactions__category,
+.transactions__category {
+  width: 100px;
+}
 .transactions__occurredOn {
-  width: 95px;
+  width: 130px;
 }
 .transactions__payee,
 .transactions__memo {
-  width: 275px;
+  width: 200px;
 }
 .transactions__actionTd {
+  width: 100px;
   text-align: center;
 }
 .transactions__submitNew {
-  padding: 4px;
-  border-radius: 10px;
-  background-color: $pop;
+  > div { display: none; }
+  > p { display: inherit; width: 100%; }
+  .transactions__actionTd:hover & {
+    border-bottom: none;
+    cursor: pointer;
+    > div { display: block; font-size: 2rem; line-height: 15px; }
+    > p { display: none; }
+  }
 }
 .transactions__delete {
-  > img { display: none; }
+  > img { display: none; @include size(14px); }
   > div { display: inherit; }
   .transactions__actionTd:hover & {
-    > img { display: inherit; }
+    border-bottom: none;
+    cursor: pointer;
+    > img { display: inherit; cursor: pointer; width: 100px; }
+    > div { display: none; color: $delete-red; }
+  }
+}
+.transactions__saveEdit {
+  > img { display: none; @include size(14px); }
+  > div { display: inherit; }
+  .transactions__actionTd:hover & {
+    border-bottom: none;
+    cursor: pointer;
+    > img { display: inherit; cursor: pointer; width: 100px; }
     > div { display: none; }
   }
 }
