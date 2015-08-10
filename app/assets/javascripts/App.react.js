@@ -3,6 +3,7 @@ var Router = require('director').Router;
 var request = require('superagent');
 var Header = require('./Header.react');
 var Transactions = require('./transactions/Transactions.react');
+var Categories = require('./categories/Categories.react');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -11,8 +12,9 @@ var App = React.createClass({
     var path = window.location.pathname.split('/');
     var currentUser = path[2];
     return {
-      userId : currentUser,
-      currentView: function() { return null }
+      userId       : currentUser,
+      transactions : '',
+      currentView  : function() { return null }
     }
   },
 
@@ -40,11 +42,11 @@ var App = React.createClass({
     console.log('Initializing Router');
     var self = this;
     self.router = Router({
-      '/users/:user_id'              : self._viewTransactions,
-      '/users/:user_id/transactions' : self._viewTransactions,
+      '/users/:user_id'              : self._viewTransactionsIndex,
+      '/users/:user_id/transactions' : self._viewTransactionsIndex,
       '/users/:user_id/profile'      : self._viewProfile,
-      '/users/:user_id/budgets'      : self._viewBudgets,
-      '/users/:user_id/categories'   : self._viewCategories
+      '/users/:user_id/budgets'      : self._viewBudgetsIndex,
+      '/users/:user_id/categories'   : self._viewCategoriesIndex
     });
     self.router.configure({ html5history: true });
     self.router.init();
@@ -62,13 +64,14 @@ var App = React.createClass({
       .end(callback);
   },
 
-  _viewTransactions: function() {
+
+  _viewTransactionsIndex: function() {
     console.log('View Transactions activated');
     this._getData('/users/'+ this.state.userId + '/transactions.json', this._setTransactionsIndex);
   },
 
   _setTransactionsIndex: function(err, res) {
-    console.log('Setting State for: Transactions Index data and currentView');
+    console.log('Setting State for: Transactions Index');
     if (err) {
       window.alert('Something went wrong: ' + err);
       return;
@@ -89,9 +92,8 @@ var App = React.createClass({
   _createTransaction: function(data) {
     console.log('Creating new transaction');
     data["user_id"] = this.state.userId;
-    sessionStorage.display = this._viewTransactions;
     request
-      .post('/users/'+ this.state.userId + '/transactions/')
+      .post('/users/'+ this.state.userId + '/transactions')
       .send(data)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
@@ -100,13 +102,13 @@ var App = React.createClass({
           window.alert("Something went wrong: \n" + res.error.message );
           return;
         } else {
-          this._viewTransactions();
+          this._viewTransactionsIndex();
         }
       }.bind(this));
   },
 
   _updateTransaction: function(data) {
-    console.log('Updating transaction', data.id);
+    console.log('Updating Transaction: ', data.id);
     data["user_id"] = this.state.userId;
     request
       .patch('/users/'+ this.state.userId + '/transactions/' + data.id)
@@ -118,32 +120,100 @@ var App = React.createClass({
           window.alert("Something went wrong: \n" + res.error.message );
           return;
         } else {
-          this._viewTransactions();
+          this._viewTransactionsIndex();
         }
       }.bind(this));
   },
 
   _deleteTransaction: function(transaction) {
-    console.log('Deleting Transaction');
-    console.log(transaction.id);
+    console.log('Deleting Transaction: ' + transaction.id);
     request
       .del('/users/'+ this.state.userId + '/transactions/' + transaction.id)
       .set('Accept', 'application/json')
       .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-      .end(this._viewTransactions);
+      .end(this._viewTransactionsIndex);
   },
+
+
+  _viewCategoriesIndex: function() {
+    console.log('View Categories activated');
+    this._getData('/users/'+ this.state.userId + '/categories.json', this._setCategoriesIndex);
+  },
+
+  _setCategoriesIndex: function(err, res) {
+    console.log('Setting State for: Categories Index');
+    if (err) {
+      window.alert('Something went wrong: ' + err);
+      return;
+    }
+    this.setState({
+      categories   : res.body,
+      currentView  : this._buildCategoriesIndex
+    });
+  },
+
+  _buildCategoriesIndex: function() {
+    console.log('Building Categories Index View');
+    return (
+      <Categories categories={this.state.categories} createCategory={this._createCategory}
+      deleteCategory={this._deleteCategory} updateCategory={this._updateCategory}/>
+    )
+  },
+
+  _createCategory: function(data) {
+    console.log('Creating new category');
+    data["user_id"] = this.state.userId;
+    request
+      .post('/users/'+ this.state.userId + '/categories')
+      .send(data)
+      .set('Accept', 'application/json')
+      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
+      .end(function(err, res) {
+        if (err) {
+          window.alert("Something went wrong: \n" + res.error.message );
+          return;
+        } else {
+          this._viewCategoriesIndex();
+        }
+      }.bind(this));
+  },
+
+  _deleteCategory: function(category) {
+    console.log('Deleting Category: ' + category.id);
+    request
+      .del('/users/'+ this.state.userId + '/categories/' + category.id)
+      .set('Accept', 'application/json')
+      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
+      .end(this._viewCategoriesIndex);
+  },
+
+  _updateCategory: function(data) {
+    console.log('Updating Category: ', data.id);
+    data["user_id"] = this.state.userId;
+    request
+      .patch('/users/'+ this.state.userId + '/categories/' + data.id)
+      .send(data)
+      .set('Accept', 'application/json')
+      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
+      .end(function(err, res) {
+        if (err) {
+          window.alert("Something went wrong: \n" + res.error.message );
+          return;
+        } else {
+          this._viewCategoriesIndex();
+        }
+      }.bind(this));
+  },
+
 
   _viewProfile: function() {
     console.log('View Profile activated');
   },
 
-  _viewBudgets: function() {
+  _viewBudgetsIndex: function() {
     console.log('View Budgets activated');
   },
 
-  _viewCategories: function() {
-    console.log('View Categories activated');
-  },
 
 });
 

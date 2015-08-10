@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
     if current_user
       respond_to do |format|
         format.html { render template: 'users/show' }
-        format.json { render @categories = current_user.categories.order(title: :asc) }
+        format.json { @categories = current_user.categories.order(title: :asc) }
       end
     else
       redirect_to root_path
@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = get_category
     @category.destroy
-    render nothing: true, status: 200    
+    render nothing: true, status: 200
   end
 
   private
