@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     if current_user
       respond_to do |format|
-        if Category.find_by(title: @category.title)
+        if current_user.categories.find_by(title: @category.title) || @category.title == ""
           format.json { render nothing: true, status: 422 }
         else
           @category.user = current_user
@@ -24,24 +24,36 @@ class CategoriesController < ApplicationController
           end
         end
       end
+    else
+      render nothing: true, status: 401
     end
   end
 
   def update
-    @category = get_category
-    respond_to do |format|
-      if @category.update_attributes(category_params)
-        format.json { render nothing: true, status: 202 }
-      else
-        format.json { render json: @category.errors, status: 422 }
+    if current_user
+      @category = get_category
+      respond_to do |format|
+        if params[:category][:title] != ""
+          if @category.update_attributes(category_params)
+            format.json { render nothing: true, status: 202 }
+          end
+        else
+          format.json { render json: @category.errors, status: 422 }
+        end
       end
+    else
+      render nothing: true, status: 401
     end
   end
 
   def destroy
-    @category = get_category
-    @category.destroy
-    render nothing: true, status: 200
+    if current_user
+      @category = get_category
+      @category.destroy
+      render nothing: true, status: 200
+    else
+      render nothing: true, status: 401
+    end
   end
 
   private
