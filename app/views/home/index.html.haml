@@ -1,11 +1,15 @@
-%h3
-  - if current_user
-    = link_to 'Log Out', destroy_user_session_url
-  - else
-    = link_to 'Log In', new_user_session_path
-    = " | "
-    = link_to ' Sign Up', new_user_registration_path
-
-%h2
-  - if current_user
-    = link_to 'Use the Money Manager App', user_path(current_user)
+- if current_user
+  = link_to 'Use the Money Manager App', user_path(current_user)
+  = link_to 'Log Out', destroy_user_session_url
+- else
+  .main
+    .main__overlay
+      .main__title
+        MoneyMasters
+      .main__optionsContainer
+        = link_to (new_user_session_path) do
+          .main__option
+            Log In
+        = link_to (new_user_registration_path) do
+          .main__option
+            Sign Up

@@ -1,0 +1,24 @@
+@mixin size($w, $h: $w) {
+  width: $w;
+  height: $h;
+}
+@mixin backgroundImg ($path, $x: center, $y: center) {
+  background-image: url($path);
+  background-position: $x $y;
+  background-size: cover;
+}
+@mixin overlay($opacity: 0.8) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, $opacity);
+  border-radius: inherit;
+}
+@mixin titleStyle($size: 70px, $color: rgba(234, 234, 234, 0.9), $spacing: 0.5rem) {
+  color: $color;
+  font-family: Quicksand, Arial Narrow, sans-serif;
+  font-size: $size;
+  font-weight: 400;
+  letter-spacing: $spacing;
+}
