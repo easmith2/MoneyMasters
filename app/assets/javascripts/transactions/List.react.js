@@ -9,14 +9,14 @@ var List = React.createClass({
       <table>
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Budget</th>
-            <th>Category</th>
-            <th>Payee</th>
-            <th>Memo</th>
-            <th>Credit</th>
-            <th>Debit</th>
-            <th>Action</th>
+            <th className="transactions__occurredOn">Date</th>
+            <th className="transactions__budget">Budget</th>
+            <th className="transactions__category">Category</th>
+            <th className="transactions__payee">Payee</th>
+            <th className="transactions__memo">Memo</th>
+            <th className="transactions__credit">Credit</th>
+            <th className="transactions__debit">Debit</th>
+            <th className="transactions__actionTd">Action</th>
           </tr>
         </thead>
         <tbody>
