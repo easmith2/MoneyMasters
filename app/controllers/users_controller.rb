@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   def show
     if current_user
       @user = current_user
+      respond_to do |format|
+        format.html { render template: 'users/show'}
+        format.json { render json: @user, status: 200 }
+      end
     else
       redirect_to root_path
     end
