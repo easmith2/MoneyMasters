@@ -7,6 +7,10 @@ class TransactionsController < ApplicationController
           @transactions = current_user.transactions.order(occurred_on: :desc)
           render status: 200
         end
+        format.csv do
+          @transactions = current_user.transactions.order(occurred_on: :desc)
+          send_data @transactions.export_csv
+        end
       end
     else
       redirect_to root_path
@@ -53,6 +57,10 @@ class TransactionsController < ApplicationController
     @transaction = get_transaction
     @transaction.destroy
     render nothing: true, status: 200
+  end
+
+  def import
+
   end
 
 private
