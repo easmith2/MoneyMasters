@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :edit, :update] do
     get 'profile', to: 'users#show'
     get 'budgets', to: 'users#show'
     resources :budgets, except: [:new, :edit]
