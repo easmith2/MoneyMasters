@@ -208,6 +208,7 @@ var App = React.createClass({
 
   _viewProfile: function() {
     console.log('View Profile activated');
+    this._getData('/users/'+ this.state.userId + '/show.json', this._setProfile);
   },
 
   _viewBudgetsIndex: function() {

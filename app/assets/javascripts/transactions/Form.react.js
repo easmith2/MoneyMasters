@@ -1,4 +1,5 @@
 var React = require('react');
+var CategoryBox = require('./categoryBox.react');
 
 var Form = React.createClass({
   componentWillUpdate: function() {
