@@ -1,23 +1,15 @@
 class UsersController < ApplicationController
 
   def show
-    if current_user
-      @user = current_user
-      respond_to do |format|
-        format.html { render template: 'users/show'}
-        format.json { render json: @user, status: 200 }
-      end
-    else
-      redirect_to root_path
+    @user = current_user
+    respond_to do |format|
+      format.html { render template: 'users/show'}
+      format.json { render json: @user, status: 200 }
     end
   end
 
   def edit
-    if current_user
-      @user = current_user
-    else
-      redirect_to root_path
-    end
+    @user = current_user
   end
 
   def update
