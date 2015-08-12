@@ -2,8 +2,9 @@ var React = require('react');
 var Router = require('director').Router;
 var request = require('superagent');
 var Header = require('./Header.react');
-var Transactions = require('./transactions/Transactions.react');
+var Profile = require('./profile/Profile.react');
 var Categories = require('./categories/Categories.react');
+var Transactions = require('./transactions/Transactions.react');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -208,8 +209,39 @@ var App = React.createClass({
 
   _viewProfile: function() {
     console.log('View Profile activated');
-    this._getData('/users/'+ this.state.userId + '/show.json', this._setProfile);
+    this._getData('/users/'+ this.state.userId + '.json', this._setProfile);
   },
+
+  _setProfile: function(err, res) {
+    console.log('Setting State for: Profile');
+    if (err) {
+      window.alert('Something went wrong: ' + err);
+      return;
+    }
+    this.setState({
+      user   : res.body,
+      currentView  : this._buildProfile
+    });
+  },
+
+  _buildProfile: function() {
+    console.log('Building Profile View');
+    return (
+      <Profile user={this.state.user} updateProfile={this._updateProfile}/>
+    )
+  },
+
+  _updateProfile: function(e) {
+    console.log('Updating User Profile');
+    var fd = new FormData(e.target);
+    request
+      .patch('/users/' + this.state.userId)
+      .set('Accept', 'application/json')
+      .send(fd)
+      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
+      .end(this._viewProfile);
+  },
+
 
   _viewBudgetsIndex: function() {
     console.log('View Budgets activated');
