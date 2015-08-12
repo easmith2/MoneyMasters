@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
+gem 'rails_12factor', group: :production
 gem 'sidekiq'
 gem 'sinatra', require: nil
 
