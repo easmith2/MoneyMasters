@@ -15,10 +15,12 @@
     font-style: italic;
   }
 }
-.categories__list {
-  list-style: none;
-  > li {
-    margin: 2px;
+.categories__singleCateg {
+  padding: 5px;
+  margin: 0 auto;
+  width: 80%;
+  &:hover {
+    background-color: $contrast-subdominant;
   }
 }
 .categories__header {
@@ -31,6 +33,9 @@
   font-size: 1.2rem;
   line-height: 25px;
   margin: 0 10px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .categories__action {
   display: inline-block;
@@ -45,7 +50,7 @@
   > div { display: none; }
   > p { display: inherit; }
   .categories__action:hover & {
-    > div { display: inherit; font-size: 2rem; line-height: 13px; border-bottom: none; vertical-align: bottom}
+    > div { display: inherit; font-size: 2rem; line-height: 13px; vertical-align: bottom}
     > p { display: none; }
   }
 }
@@ -53,7 +58,7 @@
   > img { display: none; @include size(14px); }
   > div { display: inherit; color: $delete-red }
   .categories__action:hover & {
-    > img { display: inherit; border-bottom: none; }
+    > img { display: inherit; }
     > div { display: none; }
   }
 }
@@ -61,7 +66,7 @@
   > img { display: none; @include size(14px); }
   > div { display: inherit; }
   .categories__action:hover & {
-    > img { display: inherit; border-bottom: none; }
+    > img { display: inherit; }
     > div { display: none; }
   }
 }

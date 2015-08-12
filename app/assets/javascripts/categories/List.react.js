@@ -7,17 +7,17 @@ var List = React.createClass({
     console.log('Creating categories list');
     return (
       <div className="categories__container">
-        <ul className="categories__list">
-          <li><Form createCategory={this.props.createCategory}/></li>
+        <div className="categories__list">
+          <div><Form createCategory={this.props.createCategory}/></div>
           {this._buildCategoriesList()}
-        </ul>
+        </div>
       </div>
     );
   },
 
   _buildCategoriesList: function() {
     return this.props.categories.map(function(category) {
-      return <li key={category.id}><Category data={category} deleteCategory={this.props.deleteCategory} updateCategory={this.props.updateCategory} /></li>
+      return <div key={category.id}><Category data={category} deleteCategory={this.props.deleteCategory} updateCategory={this.props.updateCategory} /></div>
     }.bind(this));
   }
 });
