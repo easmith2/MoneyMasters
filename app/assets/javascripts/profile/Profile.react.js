@@ -18,30 +18,46 @@ var Profile = React.createClass({
       return (
         <div className="profile">
           <img src={url}></img>
-          <form onSubmit={this._saveEdit}>
-            <div>Avatar:</div>
-            <div><input ref="userAvatar" type="file" name="user[avatar]" id="user_avatar" /></div>
-            <div>User Name</div>
-            <div><input ref="userName" type="text" name="user[user_name]" id="user_name" defaultValue={this.props.user.user_name} /></div>
-            <div>Email</div>
-            <div><input ref="email" type="text" name="user[email]" defaultValue={this.props.user.email} /></div>
-            <div>Bank</div>
-            <div><input ref="bank" type="text" name="user[bank]" defaultValue={this.props.user.bank} /></div>
+          <form className="profile__edit" onSubmit={this._saveEdit}>
+            <div className="profile__detail">
+              <div>Avatar:</div>
+              <input ref="userAvatar" type="file" name="user[avatar]" id="user_avatar" />
+            </div>
+            <div className="profile__detail">
+              <div>User Name</div>
+              <input ref="userName" type="text" name="user[user_name]" id="user_name" defaultValue={this.props.user.user_name} />
+            </div>
+            <div className="profile__detail">
+              <div>Email</div>
+              <input ref="email" type="text" name="user[email]" defaultValue={this.props.user.email} />
+            </div>
+            <div className="profile__detail">
+              <div>Bank</div>
+              <input ref="bank" type="text" name="user[bank]" defaultValue={this.props.user.bank} />
+            </div>
             <button>Submit</button>
           </form>
         </div>
       )
     } else {
       return (
-        <div className="profile__edit">
+        <div className="profile">
           <img src={url}></img>
-          <div>User Name:</div>
-          <div>{this.props.user.user_name}</div>
-          <div>Email:</div>
-          <div>{this.props.user.email}</div>
-          <div>Bank:</div>
-          <div>{this.props.user.bank}</div>
-          <div className="profile__selectEdit" onClick={this._selectEdit}>Edit Profile</div>
+          <div className="profile__show">
+            <div className="profile__detail">
+              <div>User Name:</div>
+              <div>{this.props.user.user_name}</div>
+            </div>
+            <div className="profile__detail">
+              <div>Email:</div>
+              <div>{this.props.user.email}</div>
+            </div>
+            <div className="profile__detail">
+              <div>Bank:</div>
+              <div>{this.props.user.bank}</div>
+            </div>            
+            <div className="profile__selectEdit" onClick={this._selectEdit}>Edit Profile</div>
+          </div>
         </div>
       )
     }
