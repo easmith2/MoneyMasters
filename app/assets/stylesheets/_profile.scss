@@ -1,0 +1,50 @@
+.profile img {
+  @include size(200px);
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  margin: 10px;
+  vertical-align: middle;
+}
+.profile {
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+}
+.profile__edit,
+.profile__show {
+  display: inline-block;
+  margin: auto;
+  vertical-align: middle;
+}
+.profile__detail {
+  text-align: left;
+  div {
+    display: inline-block;
+    margin: 5px;
+    font-size: 1.2rem;
+  }
+
+}
+.profile__detail input[type="text"] {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+.profile button,
+.profile__edit input[type="button"] {
+  border: none;
+  background-color: $contrast-dominant;
+  border-radius: 10px;
+  &:hover {
+    background-color: $dominant;
+  }
+}
+.profile__selectEdit {
+  margin: 15px auto;
+  &:hover {
+    cursor: pointer;
+    background-color: $dominant;
+    border-radius: 10px;
+  }
+}
